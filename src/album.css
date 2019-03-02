@@ -1,0 +1,16 @@
+.btn-lg {
+  padding: 0.5rem 2.5rem;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  background-color: transparent;
+}
+.btn-primary {
+  color: black;
+  background-color: transparent;
+  border-color: grey;
+}
+
+.show > .btn-primary.dropdown-toggle {
+  color: black;
+  background-color: transparent;
+  border-color: grey;
+}
