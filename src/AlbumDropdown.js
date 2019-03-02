@@ -11,8 +11,6 @@ const dropDown = {
 
 class AlbumDropdown extends Component {
   render() {
-    this.props.albumTitleFetch();
-
     return (
       <div style={dropDown}>
         <Card.Subtitle body>{this.props.singleArtist}</Card.Subtitle>
@@ -21,12 +19,27 @@ class AlbumDropdown extends Component {
           size="lg"
           variant="primary"
           title="Albums"
-          onClick={() => this.props.albumTitleFetch()}
         >
-          <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
-          <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
-          <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
-          <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
+          {this.props.albumTitle.map((title, index) => {
+            return (
+              <div key={index}>
+                <Dropdown.Item href="#/action-1">{title.title}</Dropdown.Item>
+              </div>
+            );
+          })}
+
+          {/* {this.props.albumTitle.map((artist, index) => {
+            const artistTitle = [];
+            if (artist.id === artistID) {
+              return (
+                <div>
+                  <Card.Subtitle key={index} body>
+                    {artist.name}
+                  </Card.Subtitle>
+                </div>
+              );
+            }
+          })} */}
         </DropdownButton>
       </div>
     );

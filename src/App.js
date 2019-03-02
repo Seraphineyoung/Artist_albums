@@ -18,7 +18,6 @@ class App extends Component {
       AlbumDropDown: false,
       artistID: 0,
       albumTitles: [],
-
       singleArtist: []
     };
   }
@@ -32,6 +31,7 @@ class App extends Component {
           Users: data
         });
       });
+    this.albumTitleFetch();
   }
 
   albumDropdown = index => {
@@ -59,15 +59,13 @@ class App extends Component {
   };
 
   render() {
-    console.log(this.state.singleArtist);
     let albumDropdown = null;
     if (this.state.AlbumDropDown === true) {
       albumDropdown = (
         <AlbumDropdown
           Users={this.state.Users}
           artistID={this.state.artistID}
-          albumTitleFetch={this.albumTitleFetch}
-          albumTitles={this.state.albumTitles}
+          albumTitle={this.state.albumTitle}
           singleArtist={this.state.singleArtist}
         />
       );
