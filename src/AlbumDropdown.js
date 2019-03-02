@@ -2,8 +2,6 @@ import React, { Component } from "react";
 import "./album.css";
 import { DropdownButton, Dropdown, Card } from "react-bootstrap";
 
-const options = ["one", "two", "three"];
-
 const dropDown = {
   paddingLeft: "10rem",
   marginTop: "5rem"
@@ -11,6 +9,8 @@ const dropDown = {
 
 class AlbumDropdown extends Component {
   render() {
+    console.log(this.props.fourPhoto);
+
     return (
       <div style={dropDown}>
         <Card.Subtitle body>{this.props.singleArtist}</Card.Subtitle>
@@ -20,26 +20,17 @@ class AlbumDropdown extends Component {
           variant="primary"
           title="Albums"
         >
-          {this.props.albumTitle.map((title, index) => {
+          {this.props.fourTitles.map((title, index) => {
             return (
               <div key={index}>
-                <Dropdown.Item href="#/action-1">{title.title}</Dropdown.Item>
+                <a href="#" onClick={() => this.props.showPhoto(index)}>
+                  <Dropdown.Item href="#">
+                    {title.title} key={index}
+                  </Dropdown.Item>
+                </a>
               </div>
             );
           })}
-
-          {/* {this.props.albumTitle.map((artist, index) => {
-            const artistTitle = [];
-            if (artist.id === artistID) {
-              return (
-                <div>
-                  <Card.Subtitle key={index} body>
-                    {artist.name}
-                  </Card.Subtitle>
-                </div>
-              );
-            }
-          })} */}
         </DropdownButton>
       </div>
     );
@@ -60,4 +51,11 @@ export default AlbumDropdown;
             );
           }
         })} */
+  // const be = ab.map((item, index) => {
+  //   if (fiveItems.length <= 5) {
+  //     fiveItems.push(item);
+  //     break;
+  //   }
+  // });
+  // console.log(be);
 }

@@ -46,10 +46,13 @@ class Users extends Component {
                 <a
                   style={aTag}
                   href="#"
-                  onClick={() => this.props.albumDropdown(index)}
+                  onClick={() => {
+                    this.props.albumDropdown(index);
+                    this.props.albumTitleFive(index);
+                  }}
                 >
                   <Alert color="light" style={myCard} key={index} body>
-                    {user.name}
+                    {user.name}key={index}
                   </Alert>
                 </a>
               </div>
