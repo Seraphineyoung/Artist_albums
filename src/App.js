@@ -3,11 +3,10 @@ import "./App.css";
 import Users from "./Users";
 import AlbumDropdown from "./AlbumDropdown";
 import PhotoDropdown from "./PhotoDropdown";
-import { Container, Col } from "react-bootstrap";
+import { Col } from "react-bootstrap";
 
 const myContainer = {
-  padding: "1.2rem",
-  height: "100vh",
+  padding: "1rem",
   display: "flex"
 };
 
@@ -23,7 +22,9 @@ class App extends Component {
       singleArtist: [],
       fourTitles: [],
       photos: [],
-      fourPhoto: []
+      fourPhoto: [],
+      displayPhoto: false,
+      displaytitleAlbum: []
     };
   }
 
@@ -41,6 +42,13 @@ class App extends Component {
   }
 
   albumDropdown = index => {
+    //check if this.state.displaytitleAlbum already has a state and delete it
+    if (this.state.displaytitleAlbum.length === 1) {
+      this.setState({
+        displaytitleAlbum: []
+      });
+    }
+
     const artistID = index + 1;
     this.state.Users.map((artist, index) => {
       if (artist.id === artistID) {
@@ -66,20 +74,21 @@ class App extends Component {
   albumTitleFive = index => {
     let newIndex = index + 1;
     let albums = this.state.albumTitles;
+
     let userIndex = [];
     for (var i = 0; i < albums.length; i++) {
       if (albums[i].userId === newIndex) {
         userIndex.push(albums[i]);
       }
     }
-    // console.log(userIndex);
+
     var fiveItems = [];
     for (var i = 0; i < userIndex.length; i++) {
       if (fiveItems.length <= 3) {
         fiveItems.push(userIndex[i]);
       }
     }
-    // console.log(fiveItems);
+
     this.setState({
       fourTitles: fiveItems
     });
@@ -96,8 +105,11 @@ class App extends Component {
   };
 
   showPhoto = index => {
+    let displaytitleAlbum = this.state.fourTitles;
     let photos = this.state.photos;
     let newIndex = index + 1;
+    let sigleartistID = this.state.artistID;
+
     let PhotoIndex = [];
     for (var i = 0; i < photos.length; i++) {
       if (photos[i].albumId === newIndex) {
@@ -111,11 +123,36 @@ class App extends Component {
         fourPhoto.push(PhotoIndex[i]);
       }
     }
-    // console.log(fourPhoto);
+
+    // AllupdateAlbumTitle has all the titles  of the albums
+    let AllupdateAlbumTitle = [];
+    for (var i = 0; i < displaytitleAlbum.length; i++) {
+      if (displaytitleAlbum[i].userId === sigleartistID) {
+        AllupdateAlbumTitle.push(displaytitleAlbum[i]);
+      }
+    }
+
+    let newdisplaytitleAlbum = [];
+    for (var i = 0; i < AllupdateAlbumTitle.length; i++) {
+      if (i === index) {
+        newdisplaytitleAlbum.push(AllupdateAlbumTitle[i]);
+      }
+    }
+
     this.setState({
+      PhotoDropdown: true,
       fourPhoto: fourPhoto,
-      PhotoDropdown: true
+      displayPhoto: true,
+      displaytitleAlbum: newdisplaytitleAlbum
     });
+  };
+
+  displayPhoto = () => {
+    if (this.state.PhotoDropdown && this.state.displayPhoto === true) {
+      this.setState(prevState => ({
+        displayPhoto: !prevState.displayPhoto
+      }));
+    }
   };
 
   render() {
@@ -130,28 +167,31 @@ class App extends Component {
           singleArtist={this.state.singleArtist}
           fourTitles={this.state.fourTitles}
           showPhoto={this.showPhoto}
+          displayPhoto={this.displayPhoto}
+          displaytitleAlbum={this.state.displaytitleAlbum}
         />
       );
     }
 
-    if (this.state.PhotoDropdown === true) {
+    if (this.state.PhotoDropdown === true && this.state.displayPhoto) {
       photoDropdown = <PhotoDropdown fourPhoto={this.state.fourPhoto} />;
     }
 
     return (
-      <Container style={myContainer}>
+      <div style={myContainer}>
         <Col xs="4">
           <Users
             usersdetails={this.state.Users}
             albumDropdown={this.albumDropdown}
+            displayPhoto={this.displayPhoto}
             albumTitleFive={this.albumTitleFive}
           />
         </Col>
-        <Col xs="auto">
+        <Col xs="8">
           {albumDropdown}
           {photoDropdown}
         </Col>
-      </Container>
+      </div>
     );
   }
 }

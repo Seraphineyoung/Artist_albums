@@ -15,7 +15,7 @@ const myCard = {
 
 const myUser = {
   padding: "0.2rem",
-  marginTop: "3rem",
+  marginTop: "1.5rem",
   border: "2px solid grey",
   textAlign: "center"
 };
@@ -27,7 +27,6 @@ const nav_btn = {
   backgroundColor: "#c3e6cb",
   color: "#155724"
 };
-const article_container = { padding: "0.3rem", fontSize: "1.2rem" };
 
 class Users extends Component {
   render() {
@@ -49,6 +48,7 @@ class Users extends Component {
                   onClick={() => {
                     this.props.albumDropdown(index);
                     this.props.albumTitleFive(index);
+                    this.props.displayPhoto(index);
                   }}
                 >
                   <Alert color="light" style={myCard} key={index} body>

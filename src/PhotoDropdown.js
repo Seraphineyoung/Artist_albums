@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-// import "./photo.css";
+import "./photo.css";
 import { DropdownButton, Dropdown, Card } from "react-bootstrap";
 
 const dropDown = {
@@ -9,14 +9,15 @@ const dropDown = {
 
 class PhotoDropdown extends Component {
   render() {
-    console.log(this.props.fourPhoto);
     return (
-      <div style={{ margin: "none" }}>
+      <div style={{ marginTop: "1rem" }}>
         {this.props.fourPhoto.map((photo, index) => {
           return (
-            <Card style={{ width: "12rem" }} key={index} body>
-              <img src={photo.thumbnailUrl} />
-              <p>{photo.title}</p>
+            <Card style={{ width: "16rem", margin: "1rem" }} key={index}>
+              <Card.Img variant="top" src={photo.thumbnailUrl} />
+              <Card.Body>
+                <Card.Text>{photo.title}</Card.Text>
+              </Card.Body>
             </Card>
           );
         })}
