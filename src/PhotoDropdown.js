@@ -13,7 +13,10 @@ class PhotoDropdown extends Component {
       <div style={{ marginTop: "1rem" }}>
         {this.props.fourPhoto.map((photo, index) => {
           return (
-            <Card style={{ width: "16rem", margin: "1rem" }} key={index}>
+            <Card
+              style={{ width: "16rem", height: "24rem", margin: "1rem" }}
+              key={index}
+            >
               <Card.Img variant="top" src={photo.thumbnailUrl} />
               <Card.Body>
                 <Card.Text>{photo.title}</Card.Text>

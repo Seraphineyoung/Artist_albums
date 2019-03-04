@@ -179,7 +179,7 @@ class App extends Component {
 
     return (
       <div style={myContainer}>
-        <Col xs="4">
+        <Col xs="3">
           <Users
             usersdetails={this.state.Users}
             albumDropdown={this.albumDropdown}
@@ -187,7 +187,7 @@ class App extends Component {
             albumTitleFive={this.albumTitleFive}
           />
         </Col>
-        <Col xs="8">
+        <Col xs="auto">
           {albumDropdown}
           {photoDropdown}
         </Col>

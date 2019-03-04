@@ -3,7 +3,7 @@ import "./album.css";
 import { DropdownButton, Dropdown, Card } from "react-bootstrap";
 
 const dropDown = {
-  paddingLeft: "10rem",
+  paddingLeft: "4rem",
   marginTop: "3rem"
 };
 
@@ -54,25 +54,3 @@ class AlbumDropdown extends Component {
   }
 }
 export default AlbumDropdown;
-
-{
-  /* {this.props.Users.map((artist, index) => {
-          const artistID = this.props.artistID;
-          if (artist.id === artistID) {
-            return (
-              <div>
-                <Card.Subtitle key={index} body>
-                  {artist.name}
-                </Card.Subtitle>
-              </div>
-            );
-          }
-        })} */
-  // const be = ab.map((item, index) => {
-  //   if (fiveItems.length <= 5) {
-  //     fiveItems.push(item);
-  //     break;
-  //   }
-  // });
-  // console.log(be);
-}
